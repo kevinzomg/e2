@@ -90,7 +90,7 @@
         <li>24</li>
     </ul>
     <ul id="payoutlist">Payouts
-        <li>10000</li>
+        <li class="jackpot">10000</li>
         <li>36</li>
         <li>720</li>
         <li>360</li>
@@ -107,8 +107,8 @@
         <li>306</li>
         <li>1080</li>
         <li>144</li>
-        <li>1800</li>
-        <li>3600</li>
+        <li class="jackpot">1800</li>
+        <li class="jackpot">3600</li>
     </ul>
 </body>
 
