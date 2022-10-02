@@ -25,8 +25,7 @@
         <li>Each number in a line is added together, and the final tally will determine the amount of points the player
             will receive</li>
         <ul>
-            <li>For the purposes of this assignment, the row with the lowest total value will be picked, unless one of
-                the "jackpot" number combinations is present</li>
+            <li>For the purposes of this assignment, the row with the highest payout will be selected</li>
         </ul>
     </ul>
 
@@ -66,6 +65,9 @@
             </td>
         </tr>
     </table>
+    Best Numbers:
+    <br>
+    Points: <?php  print $payout;?>
 
     <h2>Payouts</h2>
     <ul id="sumlist">Sum

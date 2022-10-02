@@ -35,16 +35,63 @@ $sums = array("Row 1"=>$row_1, "Row 2"=>$row_2, "Row 3"=>$row_3, "Column 1"=>$co
 //Create an array to turn sums into their payout values
 //Use 'if' statements to determine the best line
 
+$payout = 0;
 foreach ($sums as $line => $sum) {
+    var_dump($line);
+    var_dump($sum);
         if ($sum == 6){
             echo "1 2 3! Jackpot!";
-            print_r(array_keys($sums, 6));
+            $payout = 10000;
+            var_dump($line);
+            var_dump($sums);
+            $line = $best;
         }
         elseif ($sum == 24){
             echo "7 8 9! Jackpot!";
+            $payout = 3600;
         }
         elseif ($sum == 23){
             echo "23 total! Jackpot!";
+            $payout = 1800;
+        }
+        elseif ($sum == 21){
+            $payout = 1080;
+        }
+        elseif ($sum == 8){
+            $payout = 720;
+        }
+        elseif ($sum == 9){
+            $payout = 360;
+        }
+        elseif ($sum == 20){
+            $payout = 306;
+        }
+        elseif ($sum == 11){
+            $payout = 252;
+        }
+        elseif ($sum == 15 or $sum == 17){
+            $payout = 180;
+        }
+        elseif ($sum == 22){
+            $payout = 144;
+        }
+        elseif ($sum == 18){
+            $payout = 119;
+        }
+        elseif ($sum == 12){
+            $payout = 108;
+        }
+        elseif ($sum == 10){
+            $payout = 80;
+        }
+        elseif ($sum == 13 or $sum == 16){
+            $payout = 72;
+        }
+        elseif ($sum == 14){
+            $payout = 54;
+        }
+        elseif ($sum == 19 or $sum == 7){
+            $payout = 36;
         }
 }
 
