@@ -64,10 +64,12 @@
                 <h3><?php print $numbers[8];?></h3>
             </td>
         </tr>
-    </table>
-    Best Numbers:
-    <br>
-    Points: <?php  print $payout;?>
+    </table><br>
+
+    Points: <?php print $payout;?><br>
+    Best line: <?php print $bestLine;?><br>
+    Sum: <?php print $bestSum;?>
+    <h3 id='jackpot'>Jackpot!</h3>
 
     <h2>Payouts</h2>
     <ul id="sumlist">Sum

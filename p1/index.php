@@ -5,96 +5,149 @@ shuffle($numbers);
 //var_dump($numbers);
 
 $row_1 = ($numbers[0] + $numbers[1] + $numbers[2]);
-print "<br>row 1 total is $row_1 <br>";
 
 $row_2 = ($numbers[3] + $numbers[4] + $numbers[5]);
-print "row 2 total is $row_2<br>";
 
 $row_3 = ($numbers[6] + $numbers[7] + $numbers[8]);
-print "row 3 total is $row_3<br>";
 
 $column_1 = ($numbers[0] + $numbers[3] + $numbers[6]);
-print "column 1 total is $column_1<br>";
 
 $column_2 = ($numbers[1] + $numbers[4] + $numbers[7]);
-print "column 2 total is $column_2<br>";
 
 $column_3 = ($numbers[2] + $numbers[5] + $numbers[8]);
-print "column 3 total is $column_3<br>";
 
 $diagonal_1 = ($numbers[0] + $numbers[4] + $numbers[8]);
-print "diagonal 1 total is $diagonal_1<br>";
 
 $diagonal_2 = ($numbers[2] + $numbers[4] + $numbers[6]);
-print "diagonal 2 total is $diagonal_2<br>";
 
 $sums = array("Row 1"=>$row_1, "Row 2"=>$row_2, "Row 3"=>$row_3, "Column 1"=>$column_1, "Column 2"=>$column_2, "Column 3"=>$column_3, "Diagonal 1"=>$diagonal_1, "Diagonal 2"=>$diagonal_2);
-//print implode($sums);
+print implode($sums);
 //var_dump($sums);
 
 //Create an array to turn sums into their payout values
 //Use 'if' statements to determine the best line
 
-$payout = 0;
-foreach ($sums as $line => $sum) {
+$payout = null;
+$bestLine = null;
+$jackpot = false;
+
+foreach ($sums as $line => &$sum) {
     var_dump($line);
-    var_dump($sum);
-        if ($sum == 6){
-            echo "1 2 3! Jackpot!";
+     var_dump($sum);
+     echo $line . ": " . $sum . "<br>";
+        if ($sum === 6){
+            echo "jackpot";
             $payout = 10000;
+            // $bestLine =& $line;
+            $bestSum = $sum;
+            $jackpot = true;
             var_dump($line);
-            var_dump($sums);
-            $line = $best;
+            // break;
         }
-        elseif ($sum == 24){
-            echo "7 8 9! Jackpot!";
+        if ($sum === 24){
+            echo "jackpot";
             $payout = 3600;
+            $bestLine =& $line;
+            $bestSum = $sum;
+            $jackpot = true;
+            var_dump($line);
+            // break;
         }
-        elseif ($sum == 23){
-            echo "23 total! Jackpot!";
+        if ($sum === 23){
+            echo "jackpot";
             $payout = 1800;
+            // $bestLine =& $line;
+            $bestSum = $sum;
+            $jackpot = true;
+            var_dump($line);
+            // break;
         }
-        elseif ($sum == 21){
+        if ($sum === 21){
             $payout = 1080;
+            // $bestLine =& $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 8){
+        if ($sum === 8){
             $payout = 720;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 9){
+        if ($sum === 9){
             $payout = 360;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 20){
+        if ($sum === 20){
             $payout = 306;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 11){
+        if ($sum === 11){
             $payout = 252;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 15 or $sum == 17){
+        if ($sum === 15 || $sum === 17){
             $payout = 180;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 22){
+        if ($sum === 22){
             $payout = 144;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 18){
+        if ($sum === 18){
             $payout = 119;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 12){
+        if ($sum === 12){
             $payout = 108;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 10){
+        if ($sum === 10){
             $payout = 80;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 13 or $sum == 16){
+        if ($sum === 13 || $sum === 16){
             $payout = 72;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 14){
+        if ($sum === 14){
             $payout = 54;
+            $bestLine = $line;
+            $bestSum = $sum;
+            // break;
         }
-        elseif ($sum == 19 or $sum == 7){
+        if ($sum === 19 || $sum === 7){
             $payout = 36;
+            $bestLine = $line;
+            $bestSum = $sum;
+            break;
         }
 }
-
+// if ($jackpot = true){
+//     echo "<style>
+//     #jackpot {
+//         display: block !important;
+//     }
+//     </style>";
+// }
 //find way to reference the chosen line, add a "winnings" tab under "Results"
 //have CSS change to reflect the outcome?
     
@@ -109,9 +162,9 @@ foreach ($sums as $line => $sum) {
 // }
 // if (in_array(6, $sums)){
 //     echo "Jackpot! 10000!";
-// } elseif (in_array(23, $sums)){
+// } if (in_array(23, $sums)){
 //     echo "Jackpot! 1800!";
-// } elseif (in_array(24, $sums)){
+// } if (in_array(24, $sums)){
 //     echo "Jackpot! 3600!";
 // }
 
