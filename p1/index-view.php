@@ -14,16 +14,17 @@
 
     <h2>Mechanics</h2>
     <ul>
-        <li>Test your luck and try to get the highest score within 3 tries</li>
-        <li>The game starts as a 3x3 grid, each section represented by a number 1-9; there are no repeated numbers</li>
-        <li>One number is revealed initially, and the player will have 3 chances to uncover a number</li>
+        <li>Test your luck and try to get the highest payout by uncovering 3 squares and picking a line</li>
+        <li>The game starts as a 3x3 grid, each square is represented by a number 1-9; there are no repeated numbers
+        </li>
+        <li>One square is revealed initially, and the player will then select 3 squares to reveal</li>
         <ul>
             <li>For the purposes of this assignment, all numbers will be revealed</li>
         </ul>
-        <li>After uncovering 3 numbers for a total of 4 revealed numbers, the player will then choose one line of
-            numbers</li>
-        <li>Each number in a line is added together, and the final tally will determine the amount of points the player
-            will receive</li>
+        <li>After uncovering 3 numbers for a total of 4 revealed numbers, the player will then choose one line on the
+            grid. 3 rows, 3 columns, and 2 diagonals mean there are 8 choices.</li>
+        <li>Each number in every line is added together, and the sum of the line will determine the amount of points the
+            line is worth</li>
         <ul>
             <li>For the purposes of this assignment, the row with the highest payout will be selected</li>
         </ul>

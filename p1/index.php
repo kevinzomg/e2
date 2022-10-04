@@ -21,127 +21,188 @@ $diagonal_1 = ($numbers[0] + $numbers[4] + $numbers[8]);
 $diagonal_2 = ($numbers[2] + $numbers[4] + $numbers[6]);
 
 $sums = array("Row 1"=>$row_1, "Row 2"=>$row_2, "Row 3"=>$row_3, "Column 1"=>$column_1, "Column 2"=>$column_2, "Column 3"=>$column_3, "Diagonal 1"=>$diagonal_1, "Diagonal 2"=>$diagonal_2);
-print implode($sums);
+//print implode($sums);
 //var_dump($sums);
 
 //Create an array to turn sums into their payout values
-//Use 'if' statements to determine the best line
+//Use 'f' statements to determine the best line
+$payouts = [];
+//var_dump($payouts);
 
 $payout = null;
 $bestLine = null;
 $jackpot = false;
+$bestSum = null;
+$array = [];
 
 foreach ($sums as $line => &$sum) {
-    var_dump($line);
-     var_dump($sum);
-     echo $line . ": " . $sum . "<br>";
+    // var_dump($line);
+    // var_dump($sum);
+    //echo $line . ": " . $sum . "<br>";
         if ($sum === 6){
             echo "jackpot";
             $payout = 10000;
-            // $bestLine =& $line;
+            $bestLine = $line;
             $bestSum = $sum;
             $jackpot = true;
             var_dump($line);
-            // break;
-        }
-        if ($sum === 24){
-            echo "jackpot";
-            $payout = 3600;
-            $bestLine =& $line;
-            $bestSum = $sum;
-            $jackpot = true;
-            var_dump($line);
-            // break;
-        }
-        if ($sum === 23){
-            echo "jackpot";
-            $payout = 1800;
-            // $bestLine =& $line;
-            $bestSum = $sum;
-            $jackpot = true;
-            var_dump($line);
-            // break;
-        }
-        if ($sum === 21){
-            $payout = 1080;
-            // $bestLine =& $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 8){
-            $payout = 720;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 9){
-            $payout = 360;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 20){
-            $payout = 306;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 11){
-            $payout = 252;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 15 || $sum === 17){
-            $payout = 180;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 22){
-            $payout = 144;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 18){
-            $payout = 119;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 12){
-            $payout = 108;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 10){
-            $payout = 80;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 13 || $sum === 16){
-            $payout = 72;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 14){
-            $payout = 54;
-            $bestLine = $line;
-            $bestSum = $sum;
-            // break;
-        }
-        if ($sum === 19 || $sum === 7){
-            $payout = 36;
-            $bestLine = $line;
-            $bestSum = $sum;
             break;
         }
+        elseif ($sum === 23){
+            echo "jackpot";
+            $payout = 1800;
+            $bestLine = $line;
+            $bestSum = $sum;
+            $jackpot = true;
+            var_dump($line);
+            break;
+        }
+        elseif ($sum === 24){
+            echo "jackpot";
+            $payout = 3600;
+            $bestLine = $line;
+            $bestSum = $sum;
+            $jackpot = true;
+            break;
+        }
+        elseif ($sum === 19 or $sum === 7){
+            $payout = 36;
+            echo $line;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 14){
+            $payout = 54;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 13 or $sum === 16){
+            $payout = 72;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 10){
+            $payout = 80;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 12){
+            $payout = 108;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 18){
+            $payout = 119;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 22){
+            $payout = 144;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 15 or $sum === 17){
+            $payout = 180;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 11){
+            $payout = 252;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 20){
+            $payout = 306;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 9){
+            $payout = 360;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 8){
+            $payout = 720;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        elseif ($sum === 21){
+            $payout = 1080;
+            // $bestLine = $line;
+            // $bestSum = $sum;
+            $array[$line] = $payout;
+            $payouts[$sum] = $payout;
+            // var_dump($array);
+            // continue;
+        }
+        echo $bestLine . " " . $sum . " payout is " . $payout . "<br>";
+
 }
-// if ($jackpot = true){
+
+//var_dump($array);
+echo $jackpot;
+//echo gettype($jackpot);
+if ($jackpot == 0) {
+    echo "no jackpot";
+    asort($array);
+    asort($payouts);
+    //var_dump($array);
+    $payout = end($array);
+    $bestLine = array_key_last($array);
+    $bestSum = array_key_last($payouts);
+}
+var_dump($payouts);
+//Write sum/payouts to array, sort array to get highest value
+
+// elseif ($jackpot = true){
 //     echo "<style>
 //     #jackpot {
 //         display: block !important;
@@ -160,11 +221,11 @@ foreach ($sums as $line => &$sum) {
 //     7 => "36");
 //     $sums = strtr($sums,$payoutArray);
 // }
-// if (in_array(6, $sums)){
+// elseif (in_array(6, $sums)){
 //     echo "Jackpot! 10000!";
-// } if (in_array(23, $sums)){
+// } elseif (in_array(23, $sums)){
 //     echo "Jackpot! 1800!";
-// } if (in_array(24, $sums)){
+// } elseif (in_array(24, $sums)){
 //     echo "Jackpot! 3600!";
 // }
 
