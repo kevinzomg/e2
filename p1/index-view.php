@@ -66,11 +66,11 @@
             </td>
         </tr>
     </table><br>
-
+    <h3 id='jackpot'>Jackpot!</h3>
     Points: <?php print $payout;?><br>
     Best line: <?php print $bestLine;?><br>
     Sum: <?php print $bestSum;?>
-    <h3 id='jackpot'>Jackpot!</h3>
+
 
     <h2>Payouts</h2>
     <ul id="sumlist">Sum
