@@ -137,5 +137,60 @@ if ($jackpot == 0) {
     }
     </style>";
 }
-
+if ($bestLine == "Row 1") {
+    echo "<style>
+    #sq1, #sq2, #sq3 {
+        background-color: greenyellow;
+    }
+    </style>";
+}
+if ($bestLine == "Row 2") {
+    echo "<style>
+    #sq4, #sq5, #sq6 {
+        background-color: greenyellow;
+    }
+    </style>";
+}
+if ($bestLine == "Row 3") {
+    echo "<style>
+    #sq7, #sq8, #sq9 {
+        background-color: greenyellow;
+    }
+    </style>";
+}
+if ($bestLine == "Column 1") {
+    echo "<style>
+    #sq1, #sq4, #sq7 {
+        background-color: greenyellow;
+    }
+    </style>";
+}
+if ($bestLine == "Column 2") {
+    echo "<style>
+    #sq2, #sq5, #sq8 {
+        background-color: greenyellow;
+    }
+    </style>";
+}
+if ($bestLine == "Column 3") {
+    echo "<style>
+    #sq3, #sq6, #sq9 {
+        background-color: greenyellow;
+    }
+    </style>";
+}
+if ($bestLine == "Diagonal 1") {
+    echo "<style>
+    #sq1, #sq5, #sq9 {
+        background-color: greenyellow;
+    }
+    </style>";
+}
+if ($bestLine == "Diagonal 2") {
+    echo "<style>
+    #sq3, #sq5, #sq7 {
+        background-color: greenyellow;
+    }
+    </style>";
+}
 require "index-view.php";

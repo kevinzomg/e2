@@ -15,7 +15,8 @@
     <h2>Mechanics</h2>
     <ul>
         <li>Test your luck and try to get the highest payout by uncovering 3 squares and picking a line</li>
-        <li>The game starts as a 3x3 grid, each square is represented by a number 1-9; there are no repeated numbers
+        <li>The game starts as a 3x3 grid of hidden numbers. Each square is represented by a number 1-9; there are no
+            repeated numbers
         </li>
         <li>One square is revealed initially, and the player will then select 3 squares to reveal</li>
         <ul>
@@ -33,35 +34,35 @@
     <h2>Results</h2>
     <table>
         <tr>
-            <td>
+            <td id='sq1'>
                 <h3><?php print $numbers[0];?></h3>
             </td>
-            <td>
+            <td id='sq2'>
                 <h3><?php print $numbers[1];?></h3>
             </td>
-            <td>
+            <td id='sq3'>
                 <h3><?php print $numbers[2];?></h3>
             </td>
         </tr>
         <tr>
-            <td>
+            <td id='sq4'>
                 <h3><?php print $numbers[3];?></h3>
             </td>
-            <td>
+            <td id='sq5'>
                 <h3><?php print $numbers[4];?></h3>
             </td>
-            <td>
+            <td id='sq6'>
                 <h3><?php print $numbers[5];?></h3>
             </td>
         </tr>
         <tr>
-            <td>
+            <td id='sq7'>
                 <h3><?php print $numbers[6];?></h3>
             </td>
-            <td>
+            <td id='sq8'>
                 <h3><?php print $numbers[7];?></h3>
             </td>
-            <td>
+            <td id='sq9'>
                 <h3><?php print $numbers[8];?></h3>
             </td>
         </tr>
