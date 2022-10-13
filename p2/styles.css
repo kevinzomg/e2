@@ -1,0 +1,20 @@
+#sumlist {
+    display: inline-block;
+}
+
+#payoutlist {
+    display: inline-block;
+}
+
+td {
+    border: 2px solid;
+    width: 1em;
+}
+
+h3 {
+    margin: auto;
+}
+
+.jackpot {
+    color: red;
+}
