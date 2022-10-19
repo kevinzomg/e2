@@ -1,7 +1,24 @@
 <?php 
+session_start();
 
 $numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
 shuffle($numbers);
+$_SESSION["numbers"]=$numbers;
+$radioChosen = [];
+//$radioChosen = $_SESSION['radioChosen'];
+if (isset($_SESSION['radioChosen'])) {
+    $radioChosen = $results['radioChosen'];
+    echo "test";
+}
+if (isset($_SESSION['results'])) {
+    $results = $_SESSION['results'];
+    //$_SESSION['selectionCount'] = $selectionCount;
+    $radioChosen = $results['radioChosen'];
+    $correct = $results['correct'];
+    $_SESSION['results'] = null;
+    echo "results check";
+}
+//var_dump($_SESSION["numbers"]);
 
 $row_1 = ($numbers[0] + $numbers[1] + $numbers[2]);
 
