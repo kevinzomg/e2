@@ -2,56 +2,71 @@
 session_start();
 if (!isset($_SESSION["numbers"])) {
     newGame();
-    echo "no session set";
+    echo "no session set ";
     var_dump($_SESSION["numbers"]);
 ;}
 else {
-    echo "session already set";
+    echo "session already set ";
     var_dump($_SESSION["numbers"]);
 }
 function newGame() {
     $numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
     shuffle($numbers);
     $_SESSION["numbers"] = $numbers;
-    echo "new game started; new array created";
+    echo "new game started; new array created ";
+    $selectionCount = 0;
+    $_SESSION['selectionCount'] = $selectionCount;
+    $squareChoice = [];
+    $_SESSION['squareChoice'] = $squareChoice;
 }
+
 //
 // Need some kind of form to submit to execute an session_unset() command
 //
-$numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
-shuffle($numbers);
+//$numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+//shuffle($numbers);
 // $_SESSION["numbers"]=$numbers;
-$radioChosen = [];
+//$radioChosen = [];
+//$selectionCount = null;
 //$radioChosen = $_SESSION['radioChosen'];
-if (isset($_SESSION['radioChosen'])) {
-    $radioChosen = $results['radioChosen'];
-    echo "test";
+if ($_SESSION['results']['radioChosen'] == true) {
+    //$_SESSION['results']['selectionCount'] ++;
+    $_SESSION['selectionCount'] ++;
+    //array_push($_SESSION['squareChoice'], $_SESSION['squareChoice']);
+    //echo $squareChoice . " CHOSEN";
 }
 if (isset($_SESSION['results'])) {
     $results = $_SESSION['results'];
-    //$_SESSION['selectionCount'] = $selectionCount;
     $radioChosen = $results['radioChosen'];
-    //$correct = $results['correct'];
-    $_SESSION['results'] = null;
+    //$_SESSION['results'] = null;
     echo "results check";
 }
-//var_dump($_SESSION["numbers"]);
+//$test = $_SESSION['test'];
+if ($_SESSION['test'] == true) {
+    var_dump($_SESSION['test']);
+}
+if (in_array("square1", $_SESSION['squareChoice'])) {
+    echo "<style>
+    #sq1 {
+        color: red;
+    }
+    </style>";
+}
+$row_1 = ($_SESSION['numbers'][0] + $_SESSION['numbers'][1] + $_SESSION['numbers'][2]);
 
-$row_1 = ($numbers[0] + $numbers[1] + $numbers[2]);
+$row_2 = ($_SESSION['numbers'][3] + $_SESSION['numbers'][4] + $_SESSION['numbers'][5]);
 
-$row_2 = ($numbers[3] + $numbers[4] + $numbers[5]);
+$row_3 = ($_SESSION['numbers'][6] + $_SESSION['numbers'][7] + $_SESSION['numbers'][8]);
 
-$row_3 = ($numbers[6] + $numbers[7] + $numbers[8]);
+$column_1 = ($_SESSION['numbers'][0] + $_SESSION['numbers'][3] + $_SESSION['numbers'][6]);
 
-$column_1 = ($numbers[0] + $numbers[3] + $numbers[6]);
+$column_2 = ($_SESSION['numbers'][1] + $_SESSION['numbers'][4] + $_SESSION['numbers'][7]);
 
-$column_2 = ($numbers[1] + $numbers[4] + $numbers[7]);
+$column_3 = ($_SESSION['numbers'][2] + $_SESSION['numbers'][5] + $_SESSION['numbers'][8]);
 
-$column_3 = ($numbers[2] + $numbers[5] + $numbers[8]);
+$diagonal_1 = ($_SESSION['numbers'][0] + $_SESSION['numbers'][4] + $_SESSION['numbers'][8]);
 
-$diagonal_1 = ($numbers[0] + $numbers[4] + $numbers[8]);
-
-$diagonal_2 = ($numbers[2] + $numbers[4] + $numbers[6]);
+$diagonal_2 = ($_SESSION['numbers'][2] + $_SESSION['numbers'][4] + $_SESSION['numbers'][6]);
 
 $sums = array("Row 1"=>$row_1, "Row 2"=>$row_2, "Row 3"=>$row_3, "Column 1"=>$column_1, "Column 2"=>$column_2, "Column 3"=>$column_3, "Diagonal 1"=>$diagonal_1, "Diagonal 2"=>$diagonal_2);
 
@@ -227,4 +242,7 @@ if ($bestLine == "Diagonal 2") {
     }
     </style>";
 }
+var_dump($_SESSION['results']);
+var_dump($_SESSION['selectionCount']);
+var_dump($_SESSION['squareChoice']);
 require "index-view.php";

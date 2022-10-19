@@ -36,52 +36,52 @@
         <form action="process.php" method="post">
             <tr>
                 <td id='sq1'>
-                    <input type="radio" id="numRadio1" name="squareChoice" value="square1 <?php print $numbers[0];?>">
-                    <h3 class="numDisplay" id="num1"><?php print $numbers[0];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio1" name="squareChoice" value="square1">
+                    <h3 class="numDisplay" id="num1"><?php print $_SESSION['numbers'][0];?></h3>
                     </input>
                 </td>
                 <td id='sq2'>
-                    <input type="radio" id="numRadio2" name="squareChoice" value="square2 <?php print $numbers[1];?>">
-                    <h3 class="numDisplay" id="num2"><?php print $numbers[1];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio2" name="squareChoice" value="square2">
+                    <h3 class="numDisplay" id="num2"><?php print $_SESSION['numbers'][1];?></h3>
                     </input>
                 </td>
                 <td id='sq3'>
-                    <input type="radio" id="numRadio3" name="squareChoice" value="square3 <?php print $numbers[2];?>">
-                    <h3 class="numDisplay" id="num3"><?php print $numbers[2];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio3" name="squareChoice" value="square3">
+                    <h3 class="numDisplay" id="num3"><?php print $_SESSION['numbers'][2];?></h3>
                     </input>
                 </td>
             </tr>
             <tr>
                 <td id='sq4'>
-                    <input type="radio" id="numRadio4" name="squareChoice" value="square4 <?php print $numbers[3];?>">
-                    <h3 class="numDisplay" id="num4"><?php print $numbers[3];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio4" name="squareChoice" value="square4">
+                    <h3 class="numDisplay" id="num4"><?php print $_SESSION['numbers'][3];?></h3>
                     </input>
                 </td>
                 <td id='sq5'>
-                    <input type="radio" id="numRadio5" name="squareChoice" value="square5 <?php print $numbers[4];?>">
-                    <h3 class="numDisplay" id="num5"><?php print $numbers[4];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio5" name="squareChoice" value="square5">
+                    <h3 class="numDisplay" id="num5"><?php print $_SESSION['numbers'][4];?></h3>
                     </input>
                 </td>
                 <td id='sq6'>
-                    <input type="radio" id="numRadio6" name="squareChoice" value="square6 <?php print $numbers[5];?>">
-                    <h3 class="numDisplay" id="num6"><?php print $numbers[5];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio6" name="squareChoice" value="square6">
+                    <h3 class="numDisplay" id="num6"><?php print $_SESSION['numbers'][5];?></h3>
                     </input>
                 </td>
             </tr>
             <tr>
                 <td id='sq7'>
-                    <input type="radio" id="numRadio7" name="squareChoice" value="square 7 <?php print $numbers[6];?>">
-                    <h3 class="numDisplay" id="num7"><?php print $numbers[6];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio7" name="squareChoice" value="square 7">
+                    <h3 class="numDisplay" id="num7"><?php print $_SESSION['numbers'][6];?></h3>
                     </input>
                 </td>
                 <td id='sq8'>
-                    <input type="radio" id="numRadio8" name="squareChoice" value="square8 <?php print $numbers[7];?>">
-                    <h3 class="numDisplay" id="num8"><?php print $numbers[7];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio8" name="squareChoice" value="square8">
+                    <h3 class="numDisplay" id="num8"><?php print $_SESSION['numbers'][7];?></h3>
                     </input>
                 </td>
                 <td id='sq9'>
-                    <input type="radio" id="numRadio9" name="squareChoice" value="square9 <?php print $numbers[8];?>">
-                    <h3 class="numDisplay" id="num9"><?php print $numbers[8];?></h3>
+                    <input type="radio" class="radioClass" id="numRadio9" name="squareChoice" value="square9">
+                    <h3 class="numDisplay" id="num9"><?php print $_SESSION['numbers'][8];?></h3>
                     </input>
                 </td>
             </tr>
@@ -99,8 +99,19 @@
 
     <?php if ($radioChosen == true){ ?>
     <h1 style="color: red;">radio selected</h1>
-    <?php }
-    else { ?> <h1>No radio selected</h1> <?php } ?>
+    <?php 
+    echo($_SESSION['selectionCount']) . " radios selected";
+    }
+    else { ?> <h1>Select a button</h1> <?php } 
+    if ($_SESSION['selectionCount'] == 3) {
+        echo " maximum radios selected";
+        echo "<style>
+        .radioClass {
+            display: none;
+        }
+        </style>";
+    }
+    ?>
 
 
     <h2>Payouts</h2>
