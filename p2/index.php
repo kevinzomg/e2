@@ -1,9 +1,26 @@
 <?php 
 session_start();
-
+if (!isset($_SESSION["numbers"])) {
+    newGame();
+    echo "no session set";
+    var_dump($_SESSION["numbers"]);
+;}
+else {
+    echo "session already set";
+    var_dump($_SESSION["numbers"]);
+}
+function newGame() {
+    $numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    shuffle($numbers);
+    $_SESSION["numbers"] = $numbers;
+    echo "new game started; new array created";
+}
+//
+// Need some kind of form to submit to execute an session_unset() command
+//
 $numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
 shuffle($numbers);
-$_SESSION["numbers"]=$numbers;
+// $_SESSION["numbers"]=$numbers;
 $radioChosen = [];
 //$radioChosen = $_SESSION['radioChosen'];
 if (isset($_SESSION['radioChosen'])) {
@@ -14,7 +31,7 @@ if (isset($_SESSION['results'])) {
     $results = $_SESSION['results'];
     //$_SESSION['selectionCount'] = $selectionCount;
     $radioChosen = $results['radioChosen'];
-    $correct = $results['correct'];
+    //$correct = $results['correct'];
     $_SESSION['results'] = null;
     echo "results check";
 }

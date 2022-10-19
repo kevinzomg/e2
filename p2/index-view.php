@@ -85,7 +85,10 @@
                     </input>
                 </td>
             </tr>
+            <label for="resetRadio">Reset?</label>
+            <input type="radio" id="resetRadio" name="resetRadio" value="yes">
             <input type="submit" value="Submit">
+
         </form>
     </table><br>
     <h3 id='jackpot'>Jackpot!</h3>
@@ -93,14 +96,12 @@
     Best line: <?php print $bestLine;?><br>
     Sum: <?php print $bestSum;?>
 
-    <?php if (isset($results)) { ?>
-    <h1>radio selected</h1>
-    <?php var_dump($_SESSION["numbers"]);
-        } ?>
 
-    <?php if (isset($_POST['squareChoice'])){ ?>
+    <?php if ($radioChosen == true){ ?>
     <h1 style="color: red;">radio selected</h1>
-    <?php }?>
+    <?php }
+    else { ?> <h1>No radio selected</h1> <?php } ?>
+
 
     <h2>Payouts</h2>
     <ul id="sumlist">Sum
