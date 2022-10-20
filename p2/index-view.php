@@ -35,67 +35,67 @@
     <table>
         <form action="process.php" method="post">
             <tr>
-                <td id='sq1'>
+                <td id='sq1' <?php if ($sq1 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio1" name="squareChoice" value="square1">
                     <h3 class="numDisplay" id="num1"><?php print $_SESSION['numbers'][0];?></h3>
                     </input>
                 </td>
-                <td id='sq2'>
+                <td id='sq2' <?php if ($sq2 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio2" name="squareChoice" value="square2">
                     <h3 class="numDisplay" id="num2"><?php print $_SESSION['numbers'][1];?></h3>
                     </input>
                 </td>
-                <td id='sq3'>
+                <td id='sq3' <?php if ($sq3 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio3" name="squareChoice" value="square3">
                     <h3 class="numDisplay" id="num3"><?php print $_SESSION['numbers'][2];?></h3>
                     </input>
                 </td>
             </tr>
             <tr>
-                <td id='sq4'>
+                <td id='sq4' <?php if ($sq4 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio4" name="squareChoice" value="square4">
                     <h3 class="numDisplay" id="num4"><?php print $_SESSION['numbers'][3];?></h3>
                     </input>
                 </td>
-                <td id='sq5'>
+                <td id='sq5' <?php if ($sq5 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio5" name="squareChoice" value="square5">
                     <h3 class="numDisplay" id="num5"><?php print $_SESSION['numbers'][4];?></h3>
                     </input>
                 </td>
-                <td id='sq6'>
+                <td id='sq6' <?php if ($sq6 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio6" name="squareChoice" value="square6">
                     <h3 class="numDisplay" id="num6"><?php print $_SESSION['numbers'][5];?></h3>
                     </input>
                 </td>
             </tr>
             <tr>
-                <td id='sq7'>
+                <td id='sq7' <?php if ($sq7 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio7" name="squareChoice" value="square 7">
                     <h3 class="numDisplay" id="num7"><?php print $_SESSION['numbers'][6];?></h3>
                     </input>
                 </td>
-                <td id='sq8'>
+                <td id='sq8' <?php if ($sq8 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio8" name="squareChoice" value="square8">
                     <h3 class="numDisplay" id="num8"><?php print $_SESSION['numbers'][7];?></h3>
                     </input>
                 </td>
-                <td id='sq9'>
+                <td id='sq9' <?php if ($sq9 == true) echo 'class="best-line"';?>>
                     <input type="radio" class="radioClass" id="numRadio9" name="squareChoice" value="square9">
                     <h3 class="numDisplay" id="num9"><?php print $_SESSION['numbers'][8];?></h3>
                     </input>
                 </td>
             </tr>
-            <label for="resetRadio">Reset?</label>
-            <input type="radio" id="resetRadio" name="resetRadio" value="yes">
-            <input type="submit" value="Submit">
+    </table>
 
-        </form>
-    </table><br>
-    <h3 id='jackpot'>Jackpot!</h3>
+    <label for="resetRadio">Reset?</label>
+    <input type="radio" id="resetRadio" name="resetRadio" value="yes">
+    <input type="submit" value="Submit">
+    </form><br><br>
+
+    <h3 <?php if ($jp == true) echo 'id="jackpot"';?>style="display:none">Jackpot!</h3>
     Points: <?php print $payout;?><br>
     Best line: <?php print $bestLine;?><br>
     Sum: <?php print $bestSum;?>
-
 
     <?php if ($radioChosen == true){ ?>
     <h1 style="color: red;">radio selected</h1>
@@ -112,7 +112,6 @@
         </style>";
     }
     ?>
-
 
     <h2>Payouts</h2>
     <ul id="sumlist">Sum

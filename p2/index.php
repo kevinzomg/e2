@@ -3,11 +3,11 @@ session_start();
 if (!isset($_SESSION["numbers"])) {
     newGame();
     echo "no session set ";
-    var_dump($_SESSION["numbers"]);
-;}
+    //var_dump($_SESSION["numbers"]);
+}
 else {
     echo "session already set ";
-    var_dump($_SESSION["numbers"]);
+    //var_dump($_SESSION["numbers"]);
 }
 function newGame() {
     $numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -19,7 +19,6 @@ function newGame() {
     $squareChoice = [];
     $_SESSION['squareChoice'] = $squareChoice;
 }
-
 //
 // Need some kind of form to submit to execute an session_unset() command
 //
@@ -29,7 +28,7 @@ function newGame() {
 //$radioChosen = [];
 //$selectionCount = null;
 //$radioChosen = $_SESSION['radioChosen'];
-if ($_SESSION['results']['radioChosen'] == true) {
+if (isset($_SESSION['results']['radioChosen']) && $_SESSION['results']['radioChosen'] == true) {
     //$_SESSION['results']['selectionCount'] ++;
     $_SESSION['selectionCount'] ++;
     //array_push($_SESSION['squareChoice'], $_SESSION['squareChoice']);
@@ -39,19 +38,23 @@ if (isset($_SESSION['results'])) {
     $results = $_SESSION['results'];
     $radioChosen = $results['radioChosen'];
     //$_SESSION['results'] = null;
-    echo "results check";
+    //echo "results check";
 }
 //$test = $_SESSION['test'];
-if ($_SESSION['test'] == true) {
-    var_dump($_SESSION['test']);
+if (isset($_SESSION['test']) && $_SESSION['test'] == true) {
+    //var_dump($_SESSION['test']);
 }
-if (in_array("square1", $_SESSION['squareChoice'])) {
-    echo "<style>
-    #sq1 {
-        color: red;
-    }
-    </style>";
+
+if (!isset($_SESSION['selected'])) {
+    $_SESSION['selected'] = array();
 }
+if (!isset($_SESSION['a'])) {
+    $_SESSION['a'] = array();
+}
+
+
+// array_push($_SESSION['selected'],array_values($_SESSION['squareChoice']));
+
 $row_1 = ($_SESSION['numbers'][0] + $_SESSION['numbers'][1] + $_SESSION['numbers'][2]);
 
 $row_2 = ($_SESSION['numbers'][3] + $_SESSION['numbers'][4] + $_SESSION['numbers'][5]);
@@ -165,14 +168,9 @@ foreach ($sums as $line => &$sum) {
             $payouts[$sum] = $payout;
         }
 }
-
+$jp = null;
 if ($jackpot == 1){
-    echo "<style>
-    #jackpot {
-        display: block !important;
-        color: red;
-    }
-    </style>";
+    $jp = true;
 }
 if ($jackpot == 0) {
     asort($array);
@@ -180,69 +178,78 @@ if ($jackpot == 0) {
     $payout = end($array);
     $bestLine = array_key_last($array);
     $bestSum = array_key_last($payouts);
-    echo "<style>
-    #jackpot {
-        display: none;
-    }
-    </style>";
 }
+$sq1 = null;
+$sq2 = null;
+$sq3 = null;
+$sq4 = null;
+$sq5 = null;
+$sq6 = null;
+$sq7 = null;
+$sq8 = null;
+$sq9 = null;
 if ($bestLine == "Row 1") {
-    echo "<style>
-    #sq1, #sq2, #sq3 {
-        background-color: greenyellow;
-    }
-    </style>";
+    $sq1 = true;
+    $sq2 = true;
+    $sq3 = true;
 }
 if ($bestLine == "Row 2") {
-    echo "<style>
-    #sq4, #sq5, #sq6 {
-        background-color: greenyellow;
-    }
-    </style>";
+    $sq4 = true;
+    $sq5 = true;
+    $sq6 = true;
 }
 if ($bestLine == "Row 3") {
-    echo "<style>
-    #sq7, #sq8, #sq9 {
-        background-color: greenyellow;
-    }
-    </style>";
+    $sq7 = true;
+    $sq8 = true;
+    $sq9 = true;
 }
 if ($bestLine == "Column 1") {
-    echo "<style>
-    #sq1, #sq4, #sq7 {
-        background-color: greenyellow;
-    }
-    </style>";
+    $sq1 = true;
+    $sq4 = true;
+    $sq7 = true;
 }
 if ($bestLine == "Column 2") {
-    echo "<style>
-    #sq2, #sq5, #sq8 {
-        background-color: greenyellow;
-    }
-    </style>";
+    $sq2 = true;
+    $sq5 = true;
+    $sq8 = true;
 }
 if ($bestLine == "Column 3") {
-    echo "<style>
-    #sq3, #sq6, #sq9 {
-        background-color: greenyellow;
-    }
-    </style>";
+    $sq1 = true;
+    $sq2 = true;
+    $sq3 = true;
 }
 if ($bestLine == "Diagonal 1") {
-    echo "<style>
-    #sq1, #sq5, #sq9 {
-        background-color: greenyellow;
-    }
-    </style>";
+    $sq1 = true;
+    $sq5 = true;
+    $sq9 = true;
 }
 if ($bestLine == "Diagonal 2") {
+    $sq3 = true;
+    $sq5 = true;
+    $sq7 = true;
+}
+
+//var_dump($_SESSION['results']);
+//var_dump($_SESSION['selectionCount']);
+//var_dump(array_values($_SESSION['squareChoice']));
+if (!$_SESSION['squareChoice'] == false) {
+    array_push($_SESSION['selected'], array_values($_SESSION['squareChoice']));
+   //var_dump(array_values($_SESSION['selected']));
+   foreach ($_SESSION['selected'] as $subarray) {
+    foreach ($subarray as $subsubarray) {
+        //var_dump($subsubarray);
+        array_push($_SESSION['a'], $subsubarray);
+        var_dump($_SESSION['a']);
+    }
+    
+}
+}
+if (in_array("square1", $_SESSION['a'])) {
     echo "<style>
-    #sq3, #sq5, #sq7 {
-        background-color: greenyellow;
+    #sq1 {
+        color: red;
     }
     </style>";
 }
-var_dump($_SESSION['results']);
-var_dump($_SESSION['selectionCount']);
-var_dump($_SESSION['squareChoice']);
+// Translate all of "$bestLine"s into ^ so that numbers appear according to what is selected
 require "index-view.php";

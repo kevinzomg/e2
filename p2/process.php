@@ -3,12 +3,12 @@ session_start();
 $radioChosen = true;
 var_dump($_SESSION["numbers"]);
 $test = false;
-
 if (isset($_POST['squareChoice']))
   {
     $radioChosen = true;
     $test = true;
     $squareChoice = $_POST['squareChoice'];
+    //array_push($_SESSION['squareChoice'], $squareChoice);
   }
 else {
     $radioChosen = false;

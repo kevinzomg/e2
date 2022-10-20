@@ -19,7 +19,15 @@ h3 {
     color: red;
 }
 
-.numDisplay {
-    /* visibility: hidden; */
-    /* padding: 16px; */
+#jackpot {
+    display: block !important;
+    color: red;
+}
+
+.best-line {
+    background-color: greenyellow;
+}
+
+.radioClass {
+    background-color: red;
 }
