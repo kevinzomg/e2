@@ -19,30 +19,13 @@ function newGame() {
     $squareChoice = [];
     $_SESSION['squareChoice'] = $squareChoice;
 }
-//
-// Need some kind of form to submit to execute an session_unset() command
-//
-//$numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
-//shuffle($numbers);
-// $_SESSION["numbers"]=$numbers;
-//$radioChosen = [];
-//$selectionCount = null;
-//$radioChosen = $_SESSION['radioChosen'];
-if (isset($_SESSION['results']['radioChosen']) && $_SESSION['results']['radioChosen'] == true) {
-    //$_SESSION['results']['selectionCount'] ++;
-    $_SESSION['selectionCount'] ++;
-    //array_push($_SESSION['squareChoice'], $_SESSION['squareChoice']);
-    //echo $squareChoice . " CHOSEN";
-}
+$randArray = array("square1", "square2", "square3", "square4", "square5", "square6", "square7", "square8", "square9");
+
 if (isset($_SESSION['results'])) {
     $results = $_SESSION['results'];
     $radioChosen = $results['radioChosen'];
-    //$_SESSION['results'] = null;
-    //echo "results check";
 }
-//$test = $_SESSION['test'];
 if (isset($_SESSION['test']) && $_SESSION['test'] == true) {
-    //var_dump($_SESSION['test']);
 }
 
 if (!isset($_SESSION['selected'])) {
@@ -51,9 +34,9 @@ if (!isset($_SESSION['selected'])) {
 if (!isset($_SESSION['a'])) {
     $_SESSION['a'] = array();
 }
-
-
-// array_push($_SESSION['selected'],array_values($_SESSION['squareChoice']));
+if (($_SESSION['selectionCount'] == 0 && (count($_SESSION['a']) == 0))) {
+    array_push($_SESSION['a'], (array_rand(array_flip($randArray))));
+}
 
 $row_1 = ($_SESSION['numbers'][0] + $_SESSION['numbers'][1] + $_SESSION['numbers'][2]);
 
@@ -229,27 +212,34 @@ if ($bestLine == "Diagonal 2") {
     $sq7 = true;
 }
 
-//var_dump($_SESSION['results']);
-//var_dump($_SESSION['selectionCount']);
-//var_dump(array_values($_SESSION['squareChoice']));
 if (!$_SESSION['squareChoice'] == false) {
     array_push($_SESSION['selected'], array_values($_SESSION['squareChoice']));
-   //var_dump(array_values($_SESSION['selected']));
-   foreach ($_SESSION['selected'] as $subarray) {
-    foreach ($subarray as $subsubarray) {
-        //var_dump($subsubarray);
+    foreach ($_SESSION['selected'] as $subarray) {
+        foreach ($subarray as $subsubarray) {
+        }
+    }
+        if ($subsubarray !== null) {
         array_push($_SESSION['a'], $subsubarray);
-        var_dump($_SESSION['a']);
-    }
-    
+        }
 }
-}
-if (in_array("square1", $_SESSION['a'])) {
-    echo "<style>
-    #sq1 {
-        color: red;
-    }
-    </style>";
-}
-// Translate all of "$bestLine"s into ^ so that numbers appear according to what is selected
+        $p2 = (count($_SESSION['a']) >= 4) ? true : false;
+$num1 = null;
+$num2 = null;
+$num3 = null;
+$num4 = null;
+$num5 = null;
+$num6 = null;
+$num7 = null;
+$num8 = null;
+$num9 = null;
+$num1 = (in_array("square1", $_SESSION['a'])) ? true : false;
+$num2 = (in_array("square2", $_SESSION['a'])) ? true : false;
+$num3 = (in_array("square3", $_SESSION['a'])) ? true : false;
+$num4 = (in_array("square4", $_SESSION['a'])) ? true : false;
+$num5 = (in_array("square5", $_SESSION['a'])) ? true : false;
+$num6 = (in_array("square6", $_SESSION['a'])) ? true : false;
+$num7 = (in_array("square7", $_SESSION['a'])) ? true : false;
+$num8 = (in_array("square8", $_SESSION['a'])) ? true : false;
+$num9 = (in_array("square9", $_SESSION['a'])) ? true : false;
+
 require "index-view.php";
