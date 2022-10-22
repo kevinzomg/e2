@@ -47,6 +47,10 @@ h3 {
     text-align: center;
 }
 
+.radioHide {
+    display: none;
+}
+
 .numPick {
     display: block !important;
 }
@@ -61,5 +65,9 @@ td {
 }
 
 .p2 {
+    display: block !important;
+}
+
+.end {
     display: block !important;
 }
