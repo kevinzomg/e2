@@ -35,7 +35,7 @@ h3 {
 }
 
 .picked {
-    color: red;
+    color: blue;
 }
 
 #picked {
@@ -65,9 +65,46 @@ td {
 }
 
 .p2 {
-    display: block !important;
+    display: revert !important;
+    opacity: 1 !important;
+}
+
+.labelClass:hover {
+    background-color: lightskyblue;
+    border-radius: 100%;
 }
 
 .end {
     display: block !important;
+}
+
+.e {
+    display: none !important;
+}
+
+#endstats {
+    display: inline-block !important;
+    border: 2px solid;
+    padding: 10px;
+}
+
+.lineChoice {
+    display: none;
+}
+
+.arrowCell {
+    display: none;
+    text-align: center;
+}
+
+.arrowCell .arrowButton input[type="radio"]:checked+label {
+    background-color: blue;
+    border-radius: 100%;
+}
+
+.labelClass {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }

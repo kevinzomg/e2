@@ -19,137 +19,169 @@
             repeated numbers
         </li>
         <li>One square is revealed initially, and the player will then select 3 squares to reveal</li>
-        <ul>
-            <li>For the purposes of this assignment, all numbers will be revealed</li>
-        </ul>
         <li>After uncovering 3 numbers for a total of 4 revealed numbers, the player will then choose one line on the
             grid. 3 rows, 3 columns, and 2 diagonals mean there are 8 choices.</li>
         <li>Each number in every line is added together, and the sum of the line will determine the amount of points the
             line is worth</li>
-        <ul>
-            <li>For the purposes of this assignment, the row with the highest payout will be selected</li>
-        </ul>
+    </ul>
+
+    <h2>Playing the game</h2>
+    <ul>
+        <li>When a new game is started, select any of the radio buttons and then use the 'Submit' button to enter your
+            selection.</li>
+        <li>After making 3 selections, you will be able to choose any of the lines. Select a line by clicking on the
+            corresponding arrow followed by the 'Submit' button.</li>
+        <li>To restart the game at any point, mark the 'Reset?' checkbox followed by the 'Submit' button.</li>
+    </ul>
+
+    <h3>Tips</h3>
+    <ul>
+        <li>The jackpot number combinations are (1 2 3), (7 8 9), and (6 8 9). Try to find these combinations!</li>
+        <li>If there is an empty/unrevealed line and you have not uncovered any of the jackpot numbers, it is always
+            worth making a guess on that line! You never know what numbers might lie there!</li>
     </ul>
 
     <h2>Results</h2>
     <table>
         <form action="process.php" method="post">
             <tr>
-                <td><input type="radio" class="lineChoice<?php if ($p2 == true) echo ' p2';?>" id="" name="lineChoice"
-                        value="diagonal1"></td>
-                <td><input type="radio" class="lineChoice<?php if ($p2 == true) echo ' p2';?>" id="" name="lineChoice"
-                        value="column1"></td>
-                <td><input type="radio" class="lineChoice<?php if ($p2 == true) echo ' p2';?>" id="" name="lineChoice"
-                        value="column2"></td>
-                <td><input type="radio" class="lineChoice<?php if ($p2 == true) echo ' p2';?>" id="" name="lineChoice"
-                        value="column3"></td>
-                <td><input type="radio" class="lineChoice<?php if ($p2 == true) echo ' p2';?>" id="" name="lineChoice"
-                        value="diagonal2"></td>
+                <td class="arrowCell<?php if ($p2 == true) echo ' p2'; if ($end == true) echo ' e';?>">
+                    <div class="arrowButton"><input type="radio" class="lineChoice" id="diagonal1" name="lineChoice"
+                            value="diagonal1"><label class="labelClass" for="diagonal1"><img
+                                src="arrow-diag1.png"></label>
+                    </div>
+                </td>
+                <td class="arrowCell<?php if ($p2 == true) echo ' p2'; if ($end == true) echo ' e';?>">
+                    <div class="arrowButton"><input type="radio" class="lineChoice" id="column1" name="lineChoice"
+                            value="column1"><label class="labelClass" for="column1"><img src="arrow-down.png"></label>
+                    </div>
+                </td>
+                <td class="arrowCell<?php if ($p2 == true) echo ' p2'; if ($end == true) echo ' e';?>">
+                    <div class="arrowButton"><input type="radio" class="lineChoice" id="column2" name="lineChoice"
+                            value="column2"><label class="labelClass" for="column2"><img src="arrow-down.png"></label>
+                    </div>
+                </td>
+                <td class="arrowCell<?php if ($p2 == true) echo ' p2'; if ($end == true) echo ' e';?>">
+                    <div class="arrowButton"><input type="radio" class="lineChoice" id="column3" name="lineChoice"
+                            value="column3"><label class="labelClass" for="column3"><img src="arrow-down.png"></label>
+                    </div>
+                </td>
+                <td class="arrowCell<?php if ($p2 == true) echo ' p2'; if ($end == true) echo ' e';?>">
+                    <div class="arrowButton"><input type="radio" class="lineChoice" id="diagonal2" name="lineChoice"
+                            value="diagonal2"><label class="labelClass" for="diagonal2"><img
+                                src="arrow-diag2.png"></label>
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td><input type="radio" class="lineChoice<?php if ($p2 == true) echo ' p2';?>" id="" name="lineChoice"
-                        value="row1"></td>
+                <td class="arrowCell<?php if ($p2 == true) echo ' p2'; if ($end == true) echo ' e';?>">
+                    <div class="arrowButton"><input type="radio" class="lineChoice" id="row1" name="lineChoice"
+                            value="row1"><label class="labelClass" for="row1"><img src="arrow-right.png"></label></div>
+                </td>
                 <td id='sq1' class="<?php if ($sq1 == true) echo 'best-line'; if ($num1 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num1 != true)) echo " radioHide";?>"
-                        id="<?php if ($num1 == true) echo 'picked';?>" name="squareChoice" value="square1">
-                    <h3 class="numDisplay<?php if ($num1 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num1">
-                        <?php print $_SESSION['numbers'][0];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num1 != true)) echo " radioHide";?>"
+                            id="<?php if ($num1 == true) echo 'picked';?>" name="squareChoice" value="square1">
+                        <h3 class="numDisplay<?php if ($num1 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num1">
+                            <?php print $_SESSION['numbers'][0];?></h3>
+                        </input>
                 </td>
                 <td id='sq2' class="<?php if ($sq2 == true) echo 'best-line'; if ($num2 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num2 != true)) echo " radioHide";?>"
-                        id="<?php if ($num2 == true) echo 'picked';?>" name="squareChoice" value="square2">
-                    <h3 class="numDisplay<?php if ($num2 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num2">
-                        <?php print $_SESSION['numbers'][1];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num2 != true)) echo " radioHide";?>"
+                            id="<?php if ($num2 == true) echo 'picked';?>" name="squareChoice" value="square2">
+                        <h3 class="numDisplay<?php if ($num2 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num2">
+                            <?php print $_SESSION['numbers'][1];?></h3>
+                        </input>
                 </td>
                 <td id='sq3' class="<?php if ($sq3 == true) echo 'best-line'; if ($num3 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num3 != true)) echo " radioHide";?>"
-                        id="<?php if ($num3 == true) echo 'picked';?>" name="squareChoice" value="square3">
-                    <h3 class="numDisplay<?php if ($num3 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num3">
-                        <?php print $_SESSION['numbers'][2];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num3 != true)) echo " radioHide";?>"
+                            id="<?php if ($num3 == true) echo 'picked';?>" name="squareChoice" value="square3">
+                        <h3 class="numDisplay<?php if ($num3 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num3">
+                            <?php print $_SESSION['numbers'][2];?></h3>
+                        </input>
                 </td>
             </tr>
             <tr>
-                <td><input type="radio" class="lineChoice<?php if ($p2 == true) echo ' p2';?>" id="" name="lineChoice"
-                        value="row2"></td>
+                <td class="arrowCell<?php if ($p2 == true) echo ' p2'; if ($end == true) echo ' e';?>">
+                    <div class="arrowButton"><input type="radio" class="lineChoice" id="row2" name="lineChoice"
+                            value="row2"><label class="labelClass" for="row2"><img src="arrow-right.png"></label></div>
+                </td>
                 <td id='sq4' class="<?php if ($sq4 == true) echo 'best-line'; if ($num4 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num4 != true)) echo " radioHide";?>"
-                        id="<?php if ($num4 == true) echo 'picked';?>" name="squareChoice" value="square4">
-                    <h3 class="numDisplay<?php if ($num4 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num4">
-                        <?php print $_SESSION['numbers'][3];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num4 != true)) echo " radioHide";?>"
+                            id="<?php if ($num4 == true) echo 'picked';?>" name="squareChoice" value="square4">
+                        <h3 class="numDisplay<?php if ($num4 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num4">
+                            <?php print $_SESSION['numbers'][3];?></h3>
+                        </input>
                 </td>
                 <td id='sq5' class="<?php if ($sq5 == true) echo 'best-line'; if ($num5 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num5 != true)) echo " radioHide";?>"
-                        id="<?php if ($num5 == true) echo 'picked';?>" name="squareChoice" value="square5">
-                    <h3 class="numDisplay<?php if ($num5 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num5">
-                        <?php print $_SESSION['numbers'][4];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num5 != true)) echo " radioHide";?>"
+                            id="<?php if ($num5 == true) echo 'picked';?>" name="squareChoice" value="square5">
+                        <h3 class="numDisplay<?php if ($num5 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num5">
+                            <?php print $_SESSION['numbers'][4];?></h3>
+                        </input>
                 </td>
                 <td id='sq6' class="<?php if ($sq6 == true) echo 'best-line'; if ($num6 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num6 != true)) echo " radioHide";?>"
-                        id="<?php if ($num6 == true) echo 'picked';?>" name="squareChoice" value="square6">
-                    <h3 class="numDisplay<?php if ($num6 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num6">
-                        <?php print $_SESSION['numbers'][5];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num6 != true)) echo " radioHide";?>"
+                            id="<?php if ($num6 == true) echo 'picked';?>" name="squareChoice" value="square6">
+                        <h3 class="numDisplay<?php if ($num6 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num6">
+                            <?php print $_SESSION['numbers'][5];?></h3>
+                        </input>
                 </td>
             </tr>
             <tr>
-                <td><input type="radio" class="lineChoice<?php if ($p2 == true) echo ' p2';?>" id="" name="lineChoice"
-                        value="row3"></td>
+                <td class="arrowCell<?php if ($p2 == true) echo ' p2'; if ($end == true) echo ' e';?>">
+                    <div class="arrowButton"><input type="radio" class="lineChoice" id="row3" name="lineChoice"
+                            value="row3"><label class="labelClass" for="row3"><img src="arrow-right.png"></label></div>
+                </td>
                 <td id='sq7' class="<?php if ($sq7 == true) echo 'best-line'; if ($num7 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num7 != true)) echo " radioHide";?>"
-                        id="<?php if ($num7 == true) echo 'picked';?>" name="squareChoice" value="square7">
-                    <h3 class="numDisplay<?php if ($num7 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num7">
-                        <?php print $_SESSION['numbers'][6];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num7 != true)) echo " radioHide";?>"
+                            id="<?php if ($num7 == true) echo 'picked';?>" name="squareChoice" value="square7">
+                        <h3 class="numDisplay<?php if ($num7 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num7">
+                            <?php print $_SESSION['numbers'][6];?></h3>
+                        </input>
                 </td>
                 <td id='sq8' class="<?php if ($sq8 == true) echo 'best-line'; if ($num8 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num8 != true)) echo " radioHide";?>"
-                        id="<?php if ($num8 == true) echo 'picked';?>" name="squareChoice" value="square8">
-                    <h3 class="numDisplay<?php if ($num8 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num8">
-                        <?php print $_SESSION['numbers'][7];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num8 != true)) echo " radioHide";?>"
+                            id="<?php if ($num8 == true) echo 'picked';?>" name="squareChoice" value="square8">
+                        <h3 class="numDisplay<?php if ($num8 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num8">
+                            <?php print $_SESSION['numbers'][7];?></h3>
+                        </input>
                 </td>
                 <td id='sq9' class="<?php if ($sq9 == true) echo 'best-line'; if ($num9 == true) echo ' picked';?>">
-                    <input type="radio"
-                        class="radioClass<?php if (($p2 == true) && ($num9 != true)) echo " radioHide";?>"
-                        id="<?php if ($num9 == true) echo 'picked';?>" name="squareChoice" value="square9">
-                    <h3 class="numDisplay<?php if ($num9 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
-                        id="num9">
-                        <?php print $_SESSION['numbers'][8];?></h3>
-                    </input>
+                    <div class="button"><input type="radio"
+                            class="radioClass<?php if (($p2 == true) && ($num9 != true)) echo " radioHide";?>"
+                            id="<?php if ($num9 == true) echo 'picked';?>" name="squareChoice" value="square9">
+                        <h3 class="numDisplay<?php if ($num9 == true) echo ' numPick'; if ($end == true) echo ' end';?>"
+                            id="num9">
+                            <?php print $_SESSION['numbers'][8];?></h3>
+                        </input>
                 </td>
             </tr>
 
     </table>
-    <label for="resetBox">Reset?</label>
+    <label sdfor="resetBox">Reset?</label>
     <input type="checkbox" id="resetCheck" name="squareChoice" value="reset">
     <input type="submit" value="Submit">
     </form><br><br>
 
-    <h3 <?php if ($jackpot == true) echo 'id="jackpot"';?>style="display:none">Jackpot!</h3>
-    Points: <?php print $payout;?><br>
-    Best line: <?php print $bestLine;?><br>
-    Sum: <?php print $sum;?><br>
+    <h2 <?php if ($jackpot == true) echo 'id="jackpot"';?>style="display:none">Jackpot!</h2>
+    <h3 <?php if ($end == true) echo 'id="endstats"';?>style="display:none">Payout: <?php print $payout;?><br>
+        Sum: <?php print $sum;?><br></h3>
 
     <h2>Payouts</h2>
     <ul id="sumlist">Sum
