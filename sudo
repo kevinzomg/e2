@@ -1,0 +1,10 @@
+Get:1 http://mirrors.digitalocean.com/ubuntu focal InRelease [265 kB]
+Hit:2 http://mirrors.digitalocean.com/ubuntu focal-updates InRelease
+Hit:3 http://mirrors.digitalocean.com/ubuntu focal-backports InRelease
+Hit:4 http://ppa.launchpad.net/ondrej/php/ubuntu focal InRelease
+Hit:5 http://security.ubuntu.com/ubuntu focal-security InRelease
+Get:6 https://repos-droplet.digitalocean.com/apt/droplet-agent main InRelease [5518 B]
+Err:6 https://repos-droplet.digitalocean.com/apt/droplet-agent main InRelease
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 35696F43FC7DB4C2
+Fetched 270 kB in 1s (266 kB/s)
+Reading package lists...
