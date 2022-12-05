@@ -1,5 +1,3 @@
-{{-- @phpinclude_once 'index.php';
-@endphp ?> --}}
 @extends('templates/master')
 
 @section('title')
@@ -42,6 +40,8 @@
     <h2>Results</h2>
     <table>
         <form method="POST" action="/save">
+
+            {{ $app->old('squareChoice') }}
             <tr>
                 <td class="arrowCell<?php if ($p2 == true) {
                     echo ' p2';
@@ -333,13 +333,14 @@
     <input type="checkbox" id="resetCheck" name="squareChoice" value="reset">
     <input type="submit" value="Submit">
     </form><br><br>
-
-    <h2 <?php if ($jackpot == true) {
+    <h2 <?php if (isset($jackpot)) {
         echo 'id="jackpot"';
     } ?>style="display:none">Jackpot!</h2>
     <h3 <?php if ($end == true) {
         echo 'id="endstats"';
-    } ?>style="display:none">Payout: <?php print $payout; ?><br>
+    } ?>style="display:none">Payout: <?php if (isset($payout)) {
+        print $payout;
+    } ?><br>
         Sum: <?php print $sum; ?><br></h3>
 
     <h2>Payouts</h2>
@@ -385,4 +386,21 @@
         <li class="jackpot">1800</li>
         <li class="jackpot">3600</li>
     </ul>
-@endsection
+
+    <form method="POST" action="/submit">
+        <table>
+            <tr>
+                {{ $app->old('guess') }}
+                <td><input type="number" name="guess" id="guess" value='{{ $app->old('guess') }}'>1</td>
+                <td><input type="radio" name="2" value="2">2</td>
+                <td><input type="radio" name="3" value="3">3</td>
+                <td><input type="radio" name="4" value="4">4</td>
+                <td><input type="radio" name="5" value="5">5</td>
+                <td><input type="radio" name="6" value="6">6</td>
+                <td><input type="radio" name="7" value="7">7</td>
+                <td><input type="radio" name="8" value="8">8</td>
+                <td><input type="radio" name="9" value="9">9</td>
+            </tr>
+        </table>
+        <input type="submit" value="submit">
+    @endsection

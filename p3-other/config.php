@@ -11,8 +11,5 @@ return [
         'name' => 'myapp',
         'username' => 'root',
         'password' => '',
-    ],
-    'jackpot' => [
-        
     ]
 ];

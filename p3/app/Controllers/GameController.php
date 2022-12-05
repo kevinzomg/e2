@@ -4,10 +4,14 @@ namespace App\Controllers;
 
 class GameController extends Controller
 {
+    public $jackpot = true;
+    
     public function game()
     {
         //session_start();
         echo "game method invoked";
+        if(isset($jackpot)){echo "jackpot set";}
+        else {echo "jackpot not set";}
         if (!isset($_SESSION["numbers"])) {
             $numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
             shuffle($numbers);
@@ -22,8 +26,8 @@ class GameController extends Controller
         $randArray = array("square1", "square2", "square3", "square4", "square5", "square6", "square7", "square8", "square9");
         $array = [];
         $payouts = [];
-        $jackpot = false;
-        $jackpot = $this->app->param('jackpot');
+        $jackpot = null;
+        //$jackpot = $this->app->param('jackpot');
         
         $payout = null;
         $bestLine = null;
@@ -237,30 +241,35 @@ class GameController extends Controller
         if ($sum === 21){
             $payout = 1080;
         }
+        $saved = $this->app->old('saved');
+        $guess = $this->app->old('guess');
+
         
-        return $this->app->view('index');
+        return $this->app->view('index', [
+            'saved' => $saved,
+            'guess' => $guess,
+        ]);
     }
 
     public function save()
     {
-        //session_start();
-        $radioChosen = true;
-        $lineChoice = false;
-        if ($_POST['squareChoice'] == "square1" || "square2" || "square3" || "square4" || "square5" ||  "square6"  || "square7" || "square8" || "square9") {
-          $radioChosen = true;
-          $squareChoice = $_POST['squareChoice'];
-        }
-        else {
-          $radioChosen = false;
-        }
-        if ($_POST['lineChoice'] == true) {
-          $lineChoice = true;
-          $lineChoice = $_POST['lineChoice'];
-          $_SESSION['lineChoice'] = $lineChoice;
-        }
-        else {
-          $lineChoice = false;
-        }
+        // $radioChosen = true;
+        // $lineChoice = false;
+        // if ($_POST['squareChoice'] == "square1" || "square2" || "square3" || "square4" || "square5" ||  "square6"  || "square7" || "square8" || "square9") {
+        //   $radioChosen = true;
+        //   $squareChoice = $_POST['squareChoice'];
+        // }
+        // else {
+        //   $radioChosen = false;
+        // }
+        // if ($_POST['lineChoice'] == true) {
+        //   $lineChoice = true;
+        //   $lineChoice = $_POST['lineChoice'];
+        //   $_SESSION['lineChoice'] = $lineChoice;
+        // }
+        // else {
+        //   $lineChoice = false;
+        // }
         if (isset($_POST['resetBox'])) {
           session_unset();
           $radioChosen = false;
@@ -269,23 +278,45 @@ class GameController extends Controller
             session_unset();
             $radioChosen = false;
           }
-            $_SESSION['results'] = [
-              'radioChosen' => $radioChosen,
-            ];
-            $_SESSION['squareChoice'] = [
-              'squareChoice' => $squareChoice,
-            ];
-        if ($_POST['lineChoice']) {
-            $_SESSION['lineChoice'] = [
-              'lineChoice' => $lineChoice
-            ];
-        }
-        return $this->app->redirect('/');
+        //     $_SESSION['results'] = [
+        //       'radioChosen' => $radioChosen,
+        //     ];
+        //     $_SESSION['squareChoice'] = [
+        //       'squareChoice' => $squareChoice,
+        //     ];
+        // if ($_POST['lineChoice']) {
+        //     $_SESSION['lineChoice'] = [
+        //       'lineChoice' => $lineChoice
+        //     ];
+        // }
+        $saved = $this->app->input('saved');
+        $squareChoice = $this->app->input('squareChoice');
+        $this->app->validate([
+            'squareChoice' => 'required'
+        ]);
+        echo $saved;
+        $this->app->db()->insert('game', [
+            'squareChoice' => $squareChoice,
+        ]);
+        $sql = "update game
+            set gameNum=gameNum+1
+            where payout=NULL;";
+        $executed = $this->app->db()->run($sql);
+        return $this->app->redirect('/', [
+            'saved' => $saved,
+            'squareChoice' => $squareChoice,
+        ]);
     }
 
-    public function test()
+    public function submit()
     {
-        return $this->app->redirect('/test');
+        $guess = $this->app->input('guess');
+        $saved = $this->app->input('saved');
+        echo $guess;
+        echo $saved;
+        $this->app->redirect('/', [
+            'guess' => $guess,
+        ]);
     }
 }
 
