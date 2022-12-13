@@ -27,8 +27,6 @@ class GameController extends Controller
         $array = [];
         $payouts = [];
         $jackpot = null;
-        //$jackpot = $this->app->param('jackpot');
-        
         $payout = null;
         $bestLine = null;
         $bestSum = null;
@@ -248,28 +246,56 @@ class GameController extends Controller
         return $this->app->view('index', [
             'saved' => $saved,
             'guess' => $guess,
+            'p2' => $p2,
+            'end' => $end,
+            'payout' => $payout,
+            'num1' => $num1,
+            'num2' => $num2,
+            'num3' => $num3,
+            'num4' => $num4,
+            'num5' => $num5,
+            'num6' => $num6,
+            'num7' => $num7,
+            'num8' => $num8,
+            'num9' => $num9,
+            'sum' => $sum,
+            'sums' => $sums,
+            'sq1' => $sq1,
+            'sq2' => $sq2,
+            'sq3' => $sq3,
+            'sq4' => $sq4,
+            'sq5' => $sq5,
+            'sq6' => $sq6,
+            'sq7' => $sq7,
+            'sq8' => $sq8,
+            'sq9' => $sq9,
+            'array' => $array,
+            'payouts' => $payouts,
+            'bestSum' => $bestSum,
+            'radioChosen' => $radioChosen,
+            'jackpot' => $jackpot,
         ]);
     }
 
     public function save()
     {
-        // $radioChosen = true;
-        // $lineChoice = false;
-        // if ($_POST['squareChoice'] == "square1" || "square2" || "square3" || "square4" || "square5" ||  "square6"  || "square7" || "square8" || "square9") {
-        //   $radioChosen = true;
-        //   $squareChoice = $_POST['squareChoice'];
-        // }
-        // else {
-        //   $radioChosen = false;
-        // }
-        // if ($_POST['lineChoice'] == true) {
-        //   $lineChoice = true;
-        //   $lineChoice = $_POST['lineChoice'];
-        //   $_SESSION['lineChoice'] = $lineChoice;
-        // }
-        // else {
-        //   $lineChoice = false;
-        // }
+        $radioChosen = true;
+        $lineChoice = false;
+        if ($_POST['squareChoice'] == "square1" || "square2" || "square3" || "square4" || "square5" ||  "square6"  || "square7" || "square8" || "square9") {
+          $radioChosen = true;
+          $squareChoice = $_POST['squareChoice'];
+        }
+        else {
+          $radioChosen = false;
+        }
+        if ($_POST['lineChoice'] == true) {
+          $lineChoice = true;
+          $lineChoice = $_POST['lineChoice'];
+          $_SESSION['lineChoice'] = $lineChoice;
+        }
+        else {
+          $lineChoice = false;
+        }
         if (isset($_POST['resetBox'])) {
           session_unset();
           $radioChosen = false;
@@ -278,17 +304,17 @@ class GameController extends Controller
             session_unset();
             $radioChosen = false;
           }
-        //     $_SESSION['results'] = [
-        //       'radioChosen' => $radioChosen,
-        //     ];
-        //     $_SESSION['squareChoice'] = [
-        //       'squareChoice' => $squareChoice,
-        //     ];
-        // if ($_POST['lineChoice']) {
-        //     $_SESSION['lineChoice'] = [
-        //       'lineChoice' => $lineChoice
-        //     ];
-        // }
+            $_SESSION['results'] = [
+              'radioChosen' => $radioChosen,
+            ];
+            $_SESSION['squareChoice'] = [
+              'squareChoice' => $squareChoice,
+            ];
+        if ($_POST['lineChoice']) {
+            $_SESSION['lineChoice'] = [
+              'lineChoice' => $lineChoice
+            ];
+        }
         $saved = $this->app->input('saved');
         $squareChoice = $this->app->input('squareChoice');
         $this->app->validate([

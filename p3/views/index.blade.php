@@ -333,14 +333,12 @@
     <input type="checkbox" id="resetCheck" name="squareChoice" value="reset">
     <input type="submit" value="Submit">
     </form><br><br>
-    <h2 <?php if (isset($jackpot)) {
+    <h2 <?php if ($jackpot == true) {
         echo 'id="jackpot"';
     } ?>style="display:none">Jackpot!</h2>
     <h3 <?php if ($end == true) {
         echo 'id="endstats"';
-    } ?>style="display:none">Payout: <?php if (isset($payout)) {
-        print $payout;
-    } ?><br>
+    } ?>style="display:none">Payout: <?php print $payout; ?><br>
         Sum: <?php print $sum; ?><br></h3>
 
     <h2>Payouts</h2>
