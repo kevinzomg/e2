@@ -4,14 +4,11 @@ namespace App\Controllers;
 
 class GameController extends Controller
 {
-    public $jackpot = true;
+    //public $jackpot = true;
     
     public function game()
     {
         //session_start();
-        echo "game method invoked";
-        if(isset($jackpot)){echo "jackpot set";}
-        else {echo "jackpot not set";}
         if (!isset($_SESSION["numbers"])) {
             $numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
             shuffle($numbers);
@@ -30,6 +27,7 @@ class GameController extends Controller
         $payout = null;
         $bestLine = null;
         $bestSum = null;
+        $endTrigger = null;
         $sum = null;
         $end = null;
         $sq1 = null;
@@ -112,6 +110,7 @@ class GameController extends Controller
             (($_SESSION['lineChoice'])['lineChoice'] = null);
         }
         if ((($_SESSION['lineChoice'])['lineChoice'] != null)) {
+            global $end;
             $end = true;
         }
         if (isset($_SESSION['lineChoice']) && (($_SESSION['lineChoice'])['lineChoice'] == "diagonal1")) {
@@ -239,13 +238,21 @@ class GameController extends Controller
         if ($sum === 21){
             $payout = 1080;
         }
-        $saved = $this->app->old('saved');
-        $guess = $this->app->old('guess');
+        // $sql = 'SELECT totalPayout FROM game ORDER BY gameNum DESC LIMIT 1;';
+        // $executed = $this->app->db()->run($sql);
+        // dump(($executed->fetchAll())[0]);
+        // //echo $executed;
+        // $data = [
+        //     'payout' => $payout,
+        //     'totalPayout' => ($executed->fetchAll()),
+        // ];
+        // if ($end == true) {
+        //     $this->app->db()->insert('game', $data);
+        //     //$sql = ''
+        // }
 
         
         return $this->app->view('index', [
-            'saved' => $saved,
-            'guess' => $guess,
             'p2' => $p2,
             'end' => $end,
             'payout' => $payout,
@@ -272,7 +279,7 @@ class GameController extends Controller
             'array' => $array,
             'payouts' => $payouts,
             'bestSum' => $bestSum,
-            'radioChosen' => $radioChosen,
+            //'radioChosen' => $radioChosen,
             'jackpot' => $jackpot,
         ]);
     }
@@ -321,27 +328,10 @@ class GameController extends Controller
             'squareChoice' => 'required'
         ]);
         echo $saved;
-        $this->app->db()->insert('game', [
-            'squareChoice' => $squareChoice,
-        ]);
-        $sql = "update game
-            set gameNum=gameNum+1
-            where payout=NULL;";
-        $executed = $this->app->db()->run($sql);
+
         return $this->app->redirect('/', [
             'saved' => $saved,
             'squareChoice' => $squareChoice,
-        ]);
-    }
-
-    public function submit()
-    {
-        $guess = $this->app->input('guess');
-        $saved = $this->app->input('saved');
-        echo $guess;
-        echo $saved;
-        $this->app->redirect('/', [
-            'guess' => $guess,
         ]);
     }
 }

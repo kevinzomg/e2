@@ -7,6 +7,8 @@ return [
     #'/' => ['AppController', 'index'],
     '/' => ['GameController', 'game'],
     '/save' => ['GameController', 'save'],
-    '/test' => ['AppController', 'test'],
+    '/history' => ['AppController', 'history'],
     '/submit' => ['GameController', 'submit'],
+    '/endgame' => ['GameController', 'endgame'],
+    '/practice' => ['AppController', 'practice'],
 ];

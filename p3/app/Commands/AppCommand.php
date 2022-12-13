@@ -15,14 +15,18 @@ class AppCommand extends Command
     # Note that `id` is omitted as that's created automatically using the db()->insert method
     $game = [
         'gameNum' => 0,
-        'squareChoice' => 'new game',
-        'lineChoice' => 'new game',
         'payout' => 0,
+        'totalPayout' => 0
     ];
-    $resetMove = "ALTER TABLE game AUTO_INCREMENT = 0;";
 
-    # Insert product
     $this->app->db()->insert('game', $game);
-    $this->app->db()->run($resetMove);
 }
+    public function reset()
+    {
+        $this->app->db()->createTable('game', [
+            'gameNum' => 'int',
+            'payout' => 'int',
+            'totalPayout' => 'int',
+        ]);
+    }
 }

@@ -33,10 +33,9 @@
         <li>If there is an empty/unrevealed line and you have not uncovered any of the jackpot numbers, it is always
             worth making a guess on that line! You never know what numbers might lie there!</li>
     </ul>
-    <form method="POST" action="/test">
-        <button type="submit">Test</button>
-    </form>
-    <a href="/test">Test</a>
+
+    <a href="/history">Game History</a>
+
     <h2>Results</h2>
     <table>
         <form method="POST" action="/save">
@@ -332,6 +331,9 @@
     <label for="resetBox">Reset?</label>
     <input type="checkbox" id="resetCheck" name="squareChoice" value="reset">
     <input type="submit" value="Submit">
+    <?php if ($end == true) {
+        echo "<input type='hidden' name='endTrigger' value='true'>";
+    } ?>
     </form><br><br>
     <h2 <?php if ($jackpot == true) {
         echo 'id="jackpot"';
@@ -384,21 +386,4 @@
         <li class="jackpot">1800</li>
         <li class="jackpot">3600</li>
     </ul>
-
-    <form method="POST" action="/submit">
-        <table>
-            <tr>
-                {{ $app->old('guess') }}
-                <td><input type="number" name="guess" id="guess" value='{{ $app->old('guess') }}'>1</td>
-                <td><input type="radio" name="2" value="2">2</td>
-                <td><input type="radio" name="3" value="3">3</td>
-                <td><input type="radio" name="4" value="4">4</td>
-                <td><input type="radio" name="5" value="5">5</td>
-                <td><input type="radio" name="6" value="6">6</td>
-                <td><input type="radio" name="7" value="7">7</td>
-                <td><input type="radio" name="8" value="8">8</td>
-                <td><input type="radio" name="9" value="9">9</td>
-            </tr>
-        </table>
-        <input type="submit" value="submit">
-    @endsection
+@endsection
